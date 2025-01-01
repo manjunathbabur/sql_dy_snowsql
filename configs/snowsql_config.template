@@ -1,0 +1,7 @@
+[connections.my_connection]
+accountname = <your_account>
+username = <your_username>
+password = <your_password>
+database = <your_database>
+schema = <your_schema>
+warehouse = <your_warehouse>

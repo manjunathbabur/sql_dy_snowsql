@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Set environment variables
+SNOWFLAKE_ACCOUNT=$1
+SNOWFLAKE_USER=$2
+SNOWFLAKE_PASSWORD=$3
+SNOWFLAKE_DATABASE=$4
+SNOWFLAKE_SCHEMA=$5
+SNOWFLAKE_WAREHOUSE=$6
+SQL_FILE=$7
+
+# Execute SnowSQL command
+snowsql -a $SNOWFLAKE_ACCOUNT \
+        -u $SNOWFLAKE_USER \
+        -p $SNOWFLAKE_PASSWORD \
+        -d $SNOWFLAKE_DATABASE \
+        -s $SNOWFLAKE_SCHEMA \
+        -w $SNOWFLAKE_WAREHOUSE \
+        -f $SQL_FILE

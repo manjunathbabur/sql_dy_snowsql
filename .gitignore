@@ -1,0 +1,12 @@
+# Ignore SnowSQL credentials
+configs/snowsql_config
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp

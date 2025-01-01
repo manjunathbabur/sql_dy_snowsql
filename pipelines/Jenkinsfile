@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    environment {
+        SNOWFLAKE_ACCOUNT = 'mg05545.eu-west-1'
+        SNOWFLAKE_USER = 'MRAJAMANI'
+        SNOWFLAKE_PASSWORD = 'Muruga@20608'
+        SNOWFLAKE_DATABASE = 'POC_CICD_PROD'
+        SNOWFLAKE_SCHEMA = 'SH_PROD'
+        SNOWFLAKE_WAREHOUSE = 'POC_ITIM_PERIASAMY'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/manjunathbabur/sql_dy_snowsql.git'
+            }
+        }
+        stage('Deploy SQL to Snowflake') {
+            steps {
+                script {
+                    bat """
+                    snowsql -a %SNOWFLAKE_ACCOUNT% \
+                            -u %SNOWFLAKE_USER% \
+                            -p %SNOWFLAKE_PASSWORD% \
+                            -d %SNOWFLAKE_DATABASE% \
+                            -s %SNOWFLAKE_SCHEMA% \
+                            -w %SNOWFLAKE_WAREHOUSE% \
+                            -f sql/create_table.sql
+                    """
+                }
+            }
+        }
+    }
+}
