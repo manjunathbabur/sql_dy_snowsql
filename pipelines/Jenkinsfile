@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        SNOWSQL_PATH = 'C:\\Program Files\\Program Files\\SnowSQL\\snowsql.exe'  // Path to snowsql.exe
-        SNOWSQL_CONFIG = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SQL_SC_TEST\\.snowsql\\config' // Path to SnowSQL config file
-        SNOWFLAKE_ACCOUNT = 'mg05545.eu-west-1'            // Snowflake account
-        SNOWFLAKE_USER = 'MRAJAMANI'              // Snowflake username
-        SNOWFLAKE_PASSWORD = 'Muruga@20608'          // Snowflake password
-        SNOWFLAKE_DATABASE = 'POC_CICD_PROD'          // Snowflake database
-        SNOWFLAKE_SCHEMA = 'SH_PROD'              // Snowflake schema
-        SNOWFLAKE_WAREHOUSE = 'POC_ITIM_PERIASAMY'        // Snowflake warehouse
+        SNOWSQL_PATH = "\"C:\\Program Files\\SnowSQL\\snowsql.exe\""
+        SNOWSQL_CONFIG = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SQL_SC_TEST\\.snowsql\\config"
+        SNOWFLAKE_ACCOUNT = 'mg05545.eu-west-1'
+        SNOWFLAKE_USER = 'MRAJAMANI'
+        SNOWFLAKE_PASSWORD = 'Muruga@20608'
+        SNOWFLAKE_DATABASE = 'POC_CICD_PROD'
+        SNOWFLAKE_SCHEMA = 'SH_PROD'
+        SNOWFLAKE_WAREHOUSE = 'POC_ITIM_PERIASAMY'
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
         stage('Validate SnowSQL') {
             steps {
                 bat """
-                %SNOWSQL_PATH% --version --config %SNOWSQL_CONFIG%
+                %SNOWSQL_PATH% --config %SNOWSQL_CONFIG% --version
                 """
             }
         }
